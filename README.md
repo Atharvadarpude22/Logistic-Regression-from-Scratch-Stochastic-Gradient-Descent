@@ -1,5 +1,3 @@
-Certainly! Here's your content properly formatted with LaTeX math, clear structure, and emojis preserved for clarity and engagement:
-
 # Logistic Regression with Stochastic Gradient Descent (SGD) — Explained! 📊🤖
 
 ### 1. The Problem Setup 🎯
@@ -171,19 +169,6 @@ $$
 | SGD Bias Update             | $$ b := b - \eta (\hat{y} - y) $$                 | ⚡️           |
 | Learning Rate               | Step size controlling update amount               | 🎚️           |
 
-Emojis make this math friendlier ✨ and help illustrate how **Logistic Regression with SGD** updates its parameters and learns to classify data efficiently. 🚀📈
 
-If you'd like, I can provide a similar explanation for *batch gradient descent* or other optimization methods!
-
-### References & Fun Resources 🔗
-
-- [LinkedIn Article on Emojis in Math](https://www.linkedin.com/pulse/chatgpt-fun-mathematics-emojis-computational-perspective-ankit-gaur)  
-- [YouTube: Logistic Regression Tutorial](https://www.youtube.com/watch?v=FjE3CPEzM4w)  
-- [Solvemoji: Math + Emojis](https://www.solvemoji.com)  
-- [Reddit Discussion on Emojis in Mathematics](https://www.reddit.com/r/mathematics/comments/1d8rg3b/emojis_in_math/)  
-- [Math Emojis Wiki](https://emojis.wiki/math/)  
-- [Creative Teach: Emoji Math](https://creativiteach.me/2018/02/18/emoji-math/)  
-- [Emoji Combos Math](https://emojicombos.com/mathematics)  
-- [Hacker News Discussion](https://news.ycombinator.com/item?id=25185816)
 
 If you need further customization or visual aids, just ask!
