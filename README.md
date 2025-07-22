@@ -24,42 +24,42 @@ $$
 z = \mathbf{w} \cdot \mathbf{x} + b = \sum_{j=1}^n w_j x_j + b
 $$
 
-where:  
+where  
 - $$ \mathbf{w} $$ = weights ⚖️  
 - $$ b $$ = bias (intercept) 🎯  
 - $$ \mathbf{x} $$ = features 🧮  
 
-- Pass this through the sigmoid function (also called logistic function) to squash it into a probability between 0 and 1:
+- Pass this through the **sigmoid function** to squash the value into a probability between 0 and 1:
 
 $$
 \hat{y} = \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
-The sigmoid acts as a soft switch 🔄 transforming linear values into probabilities.
+The sigmoid acts as a soft switch 🔄 transforming linear inputs into probabilities.
 
 ### 3. Making Predictions 🤔
 
-- $$ \hat{y} $$ is the predicted probability that the data point belongs to class 1.
-- Decision boundary with threshold 0.5:  
+- $$ \hat{y} $$ is the predicted probability that the sample belongs to class 1.
+- Classification decision rule with threshold 0.5:  
   - If $$ \hat{y} \geq 0.5 $$, predict class 1 ✅  
-  - Else, predict class 0 ❌
+  - Otherwise, predict class 0 ❌
 
-### 4. How Do We Know If Predictions Are Good? 📉
+### 4. How to Measure Prediction Quality? 📉
 
-- Use the binary cross-entropy loss (log loss) to measure error:
+- Use **binary cross-entropy loss** (log loss) to quantify error:
 
 $$
 L = - \big( y \log(\hat{y}) + (1 - y) \log(1 - \hat{y}) \big)
 $$
 
 - Intuition:  
-  - If prediction $$ \hat{y} $$ is close to true label $$ y $$, loss is low ✔️  
-  - If it's far, loss is high ❌
+  - If prediction $$ \hat{y} $$ close to true label $$ y $$, loss is low ✔️  
+  - If far, loss is high ❌
 
-### 5. Learning by Updating Parameters — Gradient Descent 🔄
+### 5. Parameter Updates via Gradient Descent 🔄
 
-- To minimize the loss, adjust weights and bias using gradients (derivatives indicating how to reduce error).
-- For one training example $$ (\mathbf{x_i}, y_i) $$, the gradients are:
+- To minimize loss, we compute parameters' gradients and update accordingly.
+- For one training sample $$ (\mathbf{x}_i, y_i) $$, gradients are:
 
 For weight $$ w_j $$:
 
@@ -73,17 +73,17 @@ $$
 \frac{\partial L}{\partial b} = \hat{y}_i - y_i
 $$
 
-### 6. What’s Stochastic Gradient Descent? ⚡️
+### 6. What is Stochastic Gradient Descent (SGD)? ⚡️
 
-- **Batch Gradient Descent** computes gradients over the *entire* dataset before updating parameters.
-- **Stochastic Gradient Descent (SGD)** updates parameters *after every single training example* immediately after computing its gradient.
-  
-This stochasticity often helps:  
+- **Batch Gradient Descent:** computes gradient over the whole dataset before updating.
+- **SGD:** updates weights **immediately after each training example**, adding randomness.
+
+Advantages:  
 - Faster convergence 🏃‍♂️  
-- Ability to escape shallow local minima 🚀  
-- Effective for large datasets 📊
+- Can escape shallow local minima 🚀  
+- Scales better for large datasets 📊
 
-### 7. SGD Update Equations 💡
+### 7. SGD Update Rules 💡
 
 For each training example:
 
@@ -99,22 +99,20 @@ $$
 b := b - \eta \cdot (\hat{y}_i - y_i)
 $$
 
-where:  
-- $$ \eta $$ = learning rate (small positive number) 📉 controlling update size.
+Here, $$ \eta $$ (eta) is the **learning rate** 📉, controlling update step size.
 
 ### 8. Example 🧑‍🏫
 
-Suppose for one sample:
+Given:  
+| Variable         | Value               | Explanation             |
+|------------------|---------------------|-------------------------|
+| Feature vector   | $$ \mathbf{x} =  $$     | Input features          |
+| True label      | $$ y = 1 $$            | Actual class            |
+| Current weights | $$ \mathbf{w} = [0.1, -0.2] $$ | Current model weights    |
+| Bias            | $$ b = 0.05 $$          | Current bias            |
+| Learning rate   | $$ \eta = 0.1 $$        | Step size               |
 
-| Variable         | Value               | Explanation                  |
-|------------------|---------------------|------------------------------|
-| Feature vector   | $$ \mathbf{x} =  $$  | Inputs/features                 |
-| True label      | $$ y = 1 $$              | The actual class               |
-| Current weights | $$ \mathbf{w} = [0.1, -0.2] $$ | Model's current weights          |
-| Bias            | $$ b = 0.05 $$            | Model's current bias            |
-| Learning rate   | $$ \eta = 0.1 $$          | Step size for updates          |
-
-**Step 1: Calculate linear output**
+**Step 1: Compute linear output**
 
 $$
 z = 0.1 \times 2 + (-0.2) \times 3 + 0.05 = 0.2 - 0.6 + 0.05 = -0.35
@@ -148,27 +146,24 @@ $$
 b = 0.05 - 0.1 \times (-0.587) = 0.1087
 $$
 
-🎯 This update moves parameters closer to minimizing error for this sample.
+🎯 This update pushes the parameters closer to minimizing error for this example.
 
-### 9. Repeat Over Dataset & Epochs 🔁
+### 9. Repeat for Entire Dataset & Many Epochs 🔁
 
-- Process each training example similarly, updating weights immediately.
-- Shuffle the data each epoch to improve learning and avoid cycles 🔀.
-- After many epochs, the model converges to the weights minimizing the loss.
+- Update parameters sample by sample.
+- Shuffle data each epoch 🔀 to improve learning.
+- Continue iterating until convergence.
 
 ### 10. Summary Table 📚
 
-| Concept                     | Formula / Description                              | Emoji       |
-|-----------------------------|--------------------------------------------------|-------------|
-| Linear Combination           | $$ z = \mathbf{w} \cdot \mathbf{x} + b $$         | ⚖️➕🧮         |
-| Sigmoid Function            | $$ \sigma(z) = \frac{1}{1 + e^{-z}} $$           | 🔄           |
-| Cross-Entropy Loss          | $$ L = -[ y \log(\hat{y}) + (1-y) \log(1-\hat{y})] $$ | 📉           |
-| Gradient for weights        | $$ (\hat{y} - y) \times x_j $$                    | 📏           |
-| Gradient for bias           | $$ \hat{y} - y $$                                | 📐           |
-| SGD Weight Update           | $$ w_j := w_j - \eta (\hat{y} - y) x_j $$        | ⚡️           |
-| SGD Bias Update             | $$ b := b - \eta (\hat{y} - y) $$                 | ⚡️           |
-| Learning Rate               | Step size controlling update amount               | 🎚️           |
+| Concept                  | Formula / Description                                | Emoji        |
+|--------------------------|----------------------------------------------------|--------------|
+| Linear Combination        | $$ z = \mathbf{w} \cdot \mathbf{x} + b $$            | ⚖️➕🧮         |
+| Sigmoid Function         | $$ \sigma(z) = \frac{1}{1 + e^{-z}} $$              | 🔄           |
+| Binary Cross-Entropy Loss| $$ L = -[ y \log(\hat{y}) + (1-y) \log(1-\hat{y}) ] $$ | 📉           |
+| Gradient for weights     | $$ (\hat{y} - y) \times x_j $$                      | 📏           |
+| Gradient for bias        | $$ \hat{y} - y $$                                   | 📐           |
+| SGD Weight Update        | $$ w_j := w_j - \eta (\hat{y} - y) x_j $$          | ⚡️           |
+| SGD Bias Update          | $$ b := b - \eta (\hat{y} - y) $$                   | ⚡️           |
+| Learning Rate            | Step size controlling update size                   | 🎚️           |
 
-
-
-If you need further customization or visual aids, just ask!
