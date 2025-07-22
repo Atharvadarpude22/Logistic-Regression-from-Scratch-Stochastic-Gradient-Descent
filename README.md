@@ -7,10 +7,10 @@ A clear and engaging explanation of how logistic regression works—optimized vi
 ## 1. Problem Setup 🎯
 
 - **Input Features**  
-  $$ \mathbf{x} = [x_1, x_2, ..., x_n] $$
+  `x = [x₁, x₂, ..., xₙ]`
 
 - **Target Label**  
-  $$ y \in \{0,1\} $$  
+  `y ∈ {0,1}`  
   (e.g., spam vs. not spam)
 
 ---
@@ -18,16 +18,16 @@ A clear and engaging explanation of how logistic regression works—optimized vi
 ## 2. Logistic Model 🔍
 
 - **Linear Combination**  
-  $$ z = \mathbf{w} \cdot \mathbf{x} + b $$
+  `z = w · x + b`
 
 - **Sigmoid Activation**  
-  $$ \hat{y} = \frac{1}{1 + e^{-z}} $$
+  `ŷ = 1 / (1 + exp(-z))`
 
 ---
 
 ## 3. Prediction Rule 🤖
 
-- If $$ \hat{y} \geq 0.5 $$ → predict **class 1**  
+- If `ŷ ≥ 0.5` → predict **class 1**  
 - Else → predict **class 0**
 
 ---
@@ -35,23 +35,23 @@ A clear and engaging explanation of how logistic regression works—optimized vi
 ## 4. Loss Function 📉
 
 **Binary Cross-Entropy**  
-$$ L = - \left[ y \log(\hat{y}) + (1 - y) \log(1 - \hat{y}) \right] $$
+`L = - [ y log(ŷ) + (1 - y) log(1 - ŷ) ]`
 
 ---
 
 ## 5. Gradients 🔁
 
 - Weight Gradient  
-  $$ \frac{\partial L}{\partial w_j} = (\hat{y}_i - y_i) x_{ij} $$
+  `∂L/∂wⱼ = (ŷ - y) · xⱼ`
 
 - Bias Gradient  
-  $$ \frac{\partial L}{\partial b} = \hat{y}_i - y_i $$
+  `∂L/∂b = ŷ - y`
 
 ---
 
 ## 6. What is SGD? ⚡
 
-Unlike **batch gradient descent**, which uses the entire dataset, **SGD** updates parameters after each training example.
+Unlike batch gradient descent, which uses the entire dataset, **SGD** updates parameters after each training example.
 
 ✨ Benefits:
 - Faster updates 🏃‍♂️  
@@ -63,33 +63,33 @@ Unlike **batch gradient descent**, which uses the entire dataset, **SGD** update
 ## 7. Update Rules 💡
 
 - Weight Update  
-  $$ w_j := w_j - \eta \cdot (\hat{y}_i - y_i) \cdot x_{ij} $$
+  `wⱼ := wⱼ - η · (ŷ - y) · xⱼ`
 
 - Bias Update  
-  $$ b := b - \eta \cdot (\hat{y}_i - y_i) $$
+  `b := b - η · (ŷ - y)`
 
-Where $$ \eta $$ = learning rate 🎚️
+Where `η` = learning rate 🎚️
 
 ---
 
 ## 8. Example Walkthrough 🧑‍🏫
 
-| Parameter         | Value             |
-|------------------|-------------------|
-| $$ \mathbf{x} $$ | $$ [2, 3] $$       |
-| $$ y $$          | $$ 1 $$           |
-| $$ \mathbf{w} $$ | $$ [0.1, -0.2] $$  |
-| $$ b $$          | $$ 0.05 $$        |
-| $$ \eta $$       | $$ 0.1 $$         |
+| Parameter   | Value       |
+|------------|-------------|
+| `x`        | `[2, 3]`     |
+| `y`        | `1`         |
+| `w`        | `[0.1, -0.2]`|
+| `b`        | `0.05`      |
+| `η`        | `0.1`       |
 
 **Step-by-step:**
-- $$ z = 0.1 \cdot 2 + (-0.2) \cdot 3 + 0.05 = -0.35 $$
-- $$ \hat{y} = \frac{1}{1 + e^{0.35}} \approx 0.413 $$
-- $$ \hat{y} - y = -0.587 $$
+- `z = 0.1·2 + (-0.2)·3 + 0.05 = -0.35`
+- `ŷ ≈ 1 / (1 + exp(0.35)) ≈ 0.413`
+- Error: `ŷ - y = -0.587`
 - Update:
-  - $$ w_1 = 0.2174 $$
-  - $$ w_2 = -0.0239 $$
-  - $$ b = 0.1087 $$
+  - `w₁ = 0.1 + 0.1174 = 0.2174`
+  - `w₂ = -0.2 + 0.1761 = -0.0239`
+  - `b = 0.05 + 0.0587 = 0.1087`
 
 ---
 
@@ -103,16 +103,13 @@ Where $$ \eta $$ = learning rate 🎚️
 
 ## 10. Summary Table 📚
 
-| Concept                   | Formula                              | Emoji |
-|---------------------------|---------------------------------------|-------|
-| Linear Combination        | $$ z = \mathbf{w} \cdot \mathbf{x} + b $$ | ⚖️   |
-| Sigmoid Activation        | $$ \frac{1}{1 + e^{-z}} $$              | 🔄   |
-| Binary Cross-Entropy      | $$ -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})] $$ | 📉 |
-| Weight Gradient           | $$ (\hat{y} - y) x_j $$                 | 📏   |
-| Bias Gradient             | $$ \hat{y} - y $$                      | 📐   |
-| Weight Update (SGD)       | $$ w_j := w_j - \eta (\hat{y} - y) x_j $$ | ⚡   |
-| Bias Update (SGD)         | $$ b := b - \eta (\hat{y} - y) $$      | ⚡   |
-| Learning Rate             | $$ \eta $$ – step size                 | 🎚️  |
-
----
-
+| Concept             | Formula                          | Emoji |
+|---------------------|----------------------------------|--------|
+| Linear Combination  | `z = w · x + b`                  | ⚖️     |
+| Sigmoid Activation  | `σ(z) = 1 / (1 + exp(-z))`       | 🔄     |
+| Cross-Entropy Loss  | `L = -[ y log(ŷ) + (1-y) log(1-ŷ) ]` | 📉 |
+| Weight Gradient     | `(ŷ - y) · xⱼ`                   | 📏     |
+| Bias Gradient       | `ŷ - y`                          | 📐     |
+| SGD Weight Update   | `wⱼ := wⱼ - η (ŷ - y) xⱼ`         | ⚡     |
+| SGD Bias Update     | `b := b - η (ŷ - y)`             | ⚡     |
+| Learning Rate       | `η` – step size                  | 🎚️    |
